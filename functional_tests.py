@@ -1,13 +1,19 @@
 from selenium import webdriver
+import unittest
 
-browser = webdriver.Firefox()
+class  NewVisitorTest(unittest.TestCase):
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
+    def tearDown(self):
+        self.browser.quit()
+    def test_can_start_a_list_and_retrieve_it_later(self):
+        self.browser.get("http://127.0.0.1:8000")
 
-browser.get("http://127.0.0.1:8000")
+        self.assertIn('T0-Do',self.browser.title)
 
-assert 'Django' in browser.title
+        self.fail('Finish the test!')
 
-
-
-#browser.get("http://www.baidu.com")
-#assert("百度" in browser.title)
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
 
