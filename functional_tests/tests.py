@@ -1,11 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-from django.test import LiveServerTestCase
+#from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 import unittest
 
-class  NewVisitorTest(LiveServerTestCase):
+class  NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
@@ -100,7 +101,7 @@ class  NewVisitorTest(LiveServerTestCase):
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width']/2,
             512,
-            delta=5        
+            delta=10        
         )
 
         #她新建一个菜单，看输入框是否居中
@@ -109,7 +110,7 @@ class  NewVisitorTest(LiveServerTestCase):
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width']/2,
             512,
-            delta=5        
+            delta=10        
         )        
         
 
